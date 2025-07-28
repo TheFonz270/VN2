@@ -1,0 +1,36 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/ep1_investigation.rpy", line 75, in script call
+    $ renpy.pause(hard=True)
+  File "game/ep1_investigation.rpy", line 75, in script call
+    $ renpy.pause(hard=True)
+  File "game/ep1_investigation.rpy", line 75, in script call
+    $ renpy.pause(hard=True)
+  [Previous line repeated 2 more times]
+  File "game/ep1_investigation.rpy", line 60, in script
+    jump town_square
+ScriptError: could not find label 'town_square'.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/ep1_investigation.rpy", line 75, in script call
+    $ renpy.pause(hard=True)
+  File "game/ep1_investigation.rpy", line 75, in script call
+    $ renpy.pause(hard=True)
+  File "game/ep1_investigation.rpy", line 75, in script call
+    $ renpy.pause(hard=True)
+  [Previous line repeated 2 more times]
+  File "game/ep1_investigation.rpy", line 60, in script
+    jump town_square
+  File "/Users/thefonz270/Q/renpy/renpy/ast.py", line 1699, in execute
+    rv = renpy.game.script.lookup(target)
+  File "/Users/thefonz270/Q/renpy/renpy/script.py", line 1103, in lookup
+    raise ScriptError("could not find label '%s'." % str(original))
+ScriptError: could not find label 'town_square'.
+
+macOS-13.5-arm64-arm-64bit arm64
+Ren'Py 8.3.2.24090902
+VN2 1.0
+Mon Jul 28 18:36:39 2025

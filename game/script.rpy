@@ -1,33 +1,62 @@
 ﻿# The script of the game goes in this file.
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
-
-define e = Character("Eileen")
-
 
 # The game starts here.
 
+define config.keymap['evidence'] = [ 'e' ]
+
 label start:
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
+    scene bg room
+    with fade
+
+    "Welcome to your grimdark court test."
+
+    "You will first collect evidence, then present it during a trial."
+
+    jump investigation_hub
+
+label trial_scene:
 
     scene bg room
+    with dissolve
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+    "Cleric: I swear I never saw that dagger before in my life!"
 
-    show eileen happy
+    menu:
+        "Choose your action"
+        "Press for details":
+            "Truthbinder: Are you certain? Your hesitation betrays you."
+            jump trial_scene
 
-    # These display lines of dialogue.
+        "Present Evidence":
+            call screen evidence_menu
+            $ selected = _return
 
-    e "You've created a new Ren'Py game."
+            if selected == bloody_dagger:
+                "You slam the Bloody Dagger on the altar!"
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
+                "Truthbinder: Then explain why your fingerprints are on it?!"
 
-    # This ends the game.
+                "Cleric: ...No... it can’t be..."
+
+                jump ex_trial_success
+
+            elif selected == sealed_letter:
+                "Truthbinder: This letter... explains nothing relevant here."
+                "Try something else."
+                jump trial_scene
+
+            else:
+                "You fumble with irrelevant parchment."
+                jump trial_scene
+
+label ex_trial_success:
+
+    "Cleric: ...Fine. I lied. I used the blade in the ritual. But I had no choice!"
+
+    "You’ve proven a contradiction in the Cleric's testimony."
+
+    "Trial complete."
 
     return

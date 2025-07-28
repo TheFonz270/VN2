@@ -1501,6 +1501,42 @@ define bubble.expand_area = {
 }
 
 
+################################################################################
+## Custom Screens
+################################################################################
+
+screen evidence_menu():
+    tag menu
+    frame:
+        style "menu_frame"
+        vbox:
+            label "Evidence Collected"
+            for item in evidence_list:
+                textbutton item.name action Return(item)
+
+screen evidence_detail(item):
+    modal True
+    frame:
+        vbox:
+            if item.image:
+                add item.image
+            text item.description
+            textbutton "Back" action Return()
+
+screen location_menu(area_name="", examine_callback=None, talk_callback=None, move_callback=None):
+    frame:
+        style "menu_frame"
+        xalign 0.98
+        yalign 0.98
+        vbox:
+            text "[area_name]" size 20
+            if examine_callback:
+                textbutton "Examine" action Function(renpy.call, examine_callback)
+            if talk_callback:
+                textbutton "Talk" action Function(renpy.call, talk_callback)
+            if move_callback:
+                textbutton "Move" action Function(renpy.call, move_callback)
+
 
 ################################################################################
 ## Mobile Variants
